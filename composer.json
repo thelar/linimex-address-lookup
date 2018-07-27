@@ -1,0 +1,10 @@
+{
+  "name": "thelar/linimex-address-lookup",
+  "description": "Plugin to integrate with Colt API and perform lookups",
+  "type": "wordpress-plugin",
+  "autoload": {
+    "psr-4": {
+      "LinimexAddressLookup\\": "src"
+    }
+  }
+}
