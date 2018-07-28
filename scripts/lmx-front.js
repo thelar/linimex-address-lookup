@@ -2,6 +2,9 @@
 (function($){
     $('#lmx-address-lookup').submit(function(){
         console.log('lookup form submitted');
+
+        var $loader = $('#lmx-address-lookup-loader');
+        $loader.removeClass('d-none').addClass('d-inline');
         var city = $('#city').val();
         var street = $('#street').val();
         var postcode = $('#postcode').val();
@@ -57,11 +60,14 @@
                     title = 'No locations found';
                     display_form();
                 }
+
                 $('.modal-title').text(title);
                 $('#lookup-completion').modal('show');
             }
-
+            console.log($loader);
+            $loader.addClass('d-none').removeClass('d-inline');
         });
+
 
         return false;
     });

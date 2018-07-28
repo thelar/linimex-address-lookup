@@ -9,18 +9,18 @@
 namespace LinimexAddressLookup\Utils;
 
 class shortcode {
-	public function __construct()
-	{
-		add_shortcode('lmx-lookup', [$this, 'add_shortcode']);
-	}
+    public function __construct()
+    {
+        add_shortcode('lmx-lookup', [$this, 'add_shortcode']);
+    }
 
-	/**
-	 * @param $attr
-	 *
-	 * @return string
-	 */
-	public function add_shortcode($attr){
-		$form_html = '
+    /**
+     * @param $attr
+     *
+     * @return string
+     */
+    public function add_shortcode($attr){
+        $form_html = '
 		<h2>Can I get XFibre?</h2>
 		<form id="lmx-address-lookup">
 			<div class="form-group">
@@ -40,8 +40,8 @@ class shortcode {
 				<label for="postcode">Postcode</label>
 				<input id="postcode" class="form-control" type="text" value="" placeholder="E.g. E1 6EG"/>
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary"><div class="d-none" id="lmx-address-lookup-loader"><i class="fas fa-spinner fa-pulse loader"></i></div> Submit</button>
 		</form>';
-		return $form_html;
-	}
+        return $form_html;
+    }
 }
