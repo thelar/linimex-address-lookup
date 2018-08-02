@@ -22,6 +22,6 @@ class enqueuing {
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
             'ajax_nonce' =>  wp_create_nonce('my_nonce')
         ) );
-        wp_enqueue_script('google/places.js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCHrGC0n63BpZwBkjO_NXcLcvagHNvy3Y0&libraries=places&callback=initAutocomplete', [], null, true);
+        wp_enqueue_script('google/places.js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCLm7db1_uWbiMx5TPrOkKS0meEsbRr8xo&libraries=places&callback=initAutocomplete', [], null, true);
     }
 }
