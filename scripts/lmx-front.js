@@ -8,13 +8,15 @@
         var city = $('#city').val();
         var street = $('#street').val();
         var postcode = $('#postcode').val();
+        var place = $('#autocomplete').attr('data-place-id');
 
         var data = {
             action: 'address_lookup',
             city: city,
             street: street,
             postcode: postcode,
-            nonce: the_ajax_script.ajax_nonce
+            nonce: the_ajax_script.ajax_nonce,
+            place: place
         };
 
         $.post(the_ajax_script.ajaxurl, data, function(response){
@@ -30,7 +32,7 @@
                 $('.modal-body .form').hide();
                 $('#modal-submit').addClass('disabled').prop('disabled', true);
 
-                if(r.locations.length){
+                if(r.locations && r.locations.length>0){
                     title = r.locations.length + ' location(s) found:';
 
 
@@ -40,7 +42,8 @@
                     list+= '</div>';
                     var $list = $(list);
                     $(r.locations).each(function(index, element){
-                        var $item =  $('<a href="#" class="list-group-item list-group-item-action" data-city="' + element.city + '" data-number="' + element.location_premises_number + '" data-postcode="' + element.postal_zip_code + '" data-street="' + element.location_street_name + '">' + element.address + '</a>');
+                        console.log(element.location_street_name);
+                        var $item =  $('<a href="#" class="list-group-item list-group-item-action" data-city="' + element.city + '" data-number="' + element.premise_number + '" data-postcode="' + element.postcode + '" data-street="' + element.street_name + '">' + element.address + '</a>');
                         $item.bind('click', function(){
                             display_form($(this));
                         });
@@ -99,4 +102,62 @@
             $('.modal-body .form').slideDown('fast');
         });
     }
+
+
+
+
 })(jQuery);
+
+
+// This example displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
+
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+var placeSearch, autocomplete;
+
+function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+        {types: ['geocode'], componentRestrictions: {country: 'uk'}});
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    google.maps.event.addDomListener(document.getElementById('autocomplete'), 'keydown', function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+        }
+    });
+    autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+
+    jQuery('#autocomplete').attr('data-place-id', place.place_id);
+
+    console.log(place.place_id);
+}
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+                center: geolocation,
+                radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+        });
+    }
+}

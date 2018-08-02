@@ -21,24 +21,17 @@ class shortcode {
      */
     public function add_shortcode($attr){
         $form_html = '
-		<h2>Can I get XFibre?</h2>
+		<div class="d-flex flex-row justify-content-between">
+			<div class="text">
+				<h2 class="block-title">Can I get XFibre?</h2>
+				<h3 class="block-sub-title">Enter your address below</h3>
+			</div>
+			<div class="icon ml-2 ml-lg-4"></div>
+		</div>
+		
 		<form id="lmx-address-lookup">
-			<div class="form-group">
-				<label for="city">Town/City *</label>
-				<select id="city" class="form-control" required>
-					<option value="">-- Select --</option>
-					<option value="London">London</option>
-					<option value="Birmingham">Birmingham</option>
-					<option value="Manchester">Manchester</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="street">Street *</label>
-				<input id="street" class="form-control" type="text" value="" placeholder="E.g. Curzon Street" required/>
-			</div>
-			<div class="form-group">
-				<label for="postcode">Postcode</label>
-				<input id="postcode" class="form-control" type="text" value="" placeholder="E.g. E1 6EG"/>
+			<div class="form-group mt-4">
+				<input id="autocomplete" class="form-control" type="text" value="" placeholder="Start typing your address"/>
 			</div>
 			<button type="submit" class="btn btn-primary"><div class="d-none" id="lmx-address-lookup-loader"><i class="fas fa-spinner fa-pulse loader"></i></div> Submit</button>
 		</form>';

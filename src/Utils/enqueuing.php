@@ -10,17 +10,18 @@ namespace LinimexAddressLookup\Utils;
 
 
 class enqueuing {
-	protected static $root_file;
-	public function __construct($file)
-	{
-		self::$root_file = $file;
-		add_action('wp_enqueue_scripts', [$this, 'enqueue']);
-	}
-	public function enqueue(){
-		wp_enqueue_script( 'lmx_front_script', plugin_dir_url(self::$root_file) . 'scripts/lmx-front.js', ['jquery'], null, true );
-		wp_localize_script( 'lmx_front_script', 'the_ajax_script', array(
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'ajax_nonce' =>  wp_create_nonce('my_nonce')
-		) );
-	}
+    protected static $root_file;
+    public function __construct($file)
+    {
+        self::$root_file = $file;
+        add_action('wp_enqueue_scripts', [$this, 'enqueue']);
+    }
+    public function enqueue(){
+        wp_enqueue_script( 'lmx_front_script', plugin_dir_url(self::$root_file) . 'scripts/lmx-front.js', ['jquery'], null, true );
+        wp_localize_script( 'lmx_front_script', 'the_ajax_script', array(
+            'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            'ajax_nonce' =>  wp_create_nonce('my_nonce')
+        ) );
+        wp_enqueue_script('google/places.js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCHrGC0n63BpZwBkjO_NXcLcvagHNvy3Y0&libraries=places&callback=initAutocomplete', [], null, true);
+    }
 }
