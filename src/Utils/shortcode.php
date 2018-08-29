@@ -23,7 +23,7 @@ class shortcode {
         $form_html = '
 		<div class="d-flex flex-row justify-content-between">
 			<div class="text">
-				<h2 class="block-title">Can I get XFibre?</h2>
+				<h2 class="block-title">Can I get Flexfibre?</h2>
 				<h3 class="block-sub-title">Enter your address below</h3>
 			</div>
 			<div class="icon ml-2 ml-lg-4"></div>
