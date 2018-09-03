@@ -3,7 +3,7 @@
  * Plugin Name: Linimex Address Lookup
  * Plugin URI: https://www.chapteragency.com
  * Description: Plugin to integrate with Colt API and perform lookups
- * Version: 1.2.5
+ * Version: 1.2.6
  * Author: Kevin Price-Ward
  * Author URI: https://www.chapteragency.com
  */
