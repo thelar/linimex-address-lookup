@@ -32,6 +32,7 @@
                 $('.modal-body .list').empty().show();
                 $('.modal-body .form').hide();
                 $('#modal-submit').addClass('disabled').prop('disabled', true);
+                $('.modal-para').hide();
 
                 if(r.locations && r.locations.length>0){
                     title = r.locations.length + ' location(s) found';
@@ -68,7 +69,7 @@
                 }
 
                 $('.modal-title').text(title);
-                $('.modal-para').text(para);
+                $('.modal-para').text(para).show();
                 $('#lookup-completion').modal('show');
             }
             console.log($loader);
@@ -97,6 +98,9 @@
             $('#modal-number').val('');
             $('#modal-city').val('');
         }
+
+        //Display the para
+        $('.modal-para').show();
 
         //Enable submit
         $('#modal-submit').removeClass('disabled').prop('disabled', false);
