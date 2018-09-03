@@ -34,8 +34,8 @@
                 $('#modal-submit').addClass('disabled').prop('disabled', true);
 
                 if(r.locations && r.locations.length>0){
-                    title = r.locations.length ' location(s) found';
-                    para = 'Great news. Flexfibre is available in your building. Please fill in the form below or call +44 203 819 0999 to be one of the first to enjoy the business internet of the future.  \n';
+                    title = r.locations.length + ' location(s) found';
+                    para = 'Great news. Flexfibre is available in your building. Please fill in the form below or call +44 203 819 0999 to be one of the first to enjoy the business internet of the future.';
 
 
                     //Draw list
