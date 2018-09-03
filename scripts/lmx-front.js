@@ -22,8 +22,9 @@
         $.post(the_ajax_script.ajaxurl, data, function(response){
             var r = JSON.parse(response);
             var title;
-            var para;
             var body = '';
+            var para = 'Great news. Flexfibre is available in your building. Please fill in the form below or call +44 203 819 0999 to be one of the first to enjoy the business internet of the future.';
+            var not_found_para = 'At the moment, it looks like you won’t be able to benefit from our full Flexfibre service. But we do have a range of other offerings that may work for you. Please fill in the form below or call +44 203 819 0999  to discuss your options.';
             if(r.status!=='OK'){
                 alert(r.message);
             }else{
@@ -36,7 +37,6 @@
 
                 if(r.locations && r.locations.length>0){
                     title = r.locations.length + ' location(s) found';
-                    para = 'Great news. Flexfibre is available in your building. Please fill in the form below or call +44 203 819 0999 to be one of the first to enjoy the business internet of the future.';
 
 
                     //Draw list
@@ -48,13 +48,13 @@
                         console.log(element.location_street_name);
                         var $item =  $('<a href="#" class="list-group-item list-group-item-action" data-city="' + element.city + '" data-number="' + element.premise_number + '" data-postcode="' + element.postcode + '" data-street="' + element.street_name + '">' + element.address + '</a>');
                         $item.bind('click', function(){
-                            display_form($(this));
+                            display_form(para, $(this));
                         });
                         $list.append($item);
                     });
                     var $item = $('<a href="#" class="list-group-item list-group-item-action"><strong>Different location...</strong></a>');
                     $item.bind('click', function(){
-                        display_form();
+                        display_form(not_found_para);
                     });
                     $list.append($item);
 
@@ -65,11 +65,10 @@
                 }else{
                     title = 'No locations found';
                     para = 'At the moment, it looks like you won’t be able to benefit from our full Flexfibre service. But we do have a range of other offerings that may work for you. Please fill in the form below or call +44 203 819 0999  to discuss your options.';
-                    display_form();
+                    display_form(not_found_para);
                 }
 
                 $('.modal-title').text(title);
-                $('.modal-para').text(para).show();
                 $('#lookup-completion').modal('show');
             }
             console.log($loader);
@@ -80,7 +79,7 @@
         return false;
     });
 
-    function display_form($el=null){
+    function display_form(para, $el=null){
         if($el){
             var street = $el.data('street');
             var postcode = $el.data('postcode');
@@ -100,7 +99,7 @@
         }
 
         //Display the para
-        $('.modal-para').show();
+        $('.modal-para').text(para).show();
 
         //Enable submit
         $('#modal-submit').removeClass('disabled').prop('disabled', false);
