@@ -24,7 +24,7 @@
             var title;
             var body = '';
             var para = 'Great news. Flexfibre is available in your building. Please fill in the form below or call +44 203 819 0999 to be one of the first to enjoy the business internet of the future.';
-            var not_found_para = 'At the moment, it looks like you won’t be able to benefit from our full Flexfibre service. But we do have a range of other offerings that may work for you. Please fill in the form below or call +44 203 819 0999  to discuss your options.';
+            var not_found_para = 'At the moment, it looks like you won’t be able to benefit from our full Flexfibre service. But we do have a range of other offerings that may work for you. Please fill in the form below or call +44 20 3962 7555  to discuss your options.';
             if(r.status!=='OK'){
                 alert(r.message);
             }else{
@@ -64,7 +64,7 @@
 
                 }else{
                     title = 'No locations found';
-                    para = 'At the moment, it looks like you won’t be able to benefit from our full Flexfibre service. But we do have a range of other offerings that may work for you. Please fill in the form below or call +44 203 819 0999  to discuss your options.';
+                    para = 'At the moment, it looks like you won’t be able to benefit from our full Flexfibre service. But we do have a range of other offerings that may work for you. Please fill in the form below or call +44 20 3962 7555  to discuss your options.';
                     display_form(not_found_para);
                 }
 
